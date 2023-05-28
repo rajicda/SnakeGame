@@ -12,6 +12,7 @@ POSITION = [(0, 0), (-20, 0), (-40, 0)]
 class Snake:
     def __init__(self):
         self.segments = []
+        self.speed = 0.15
         self.create_snake()
         self.head = self.segments[0]
 
@@ -36,6 +37,14 @@ class Snake:
             y = self.segments[segment_number - 1].ycor()
             self.segments[segment_number].goto(x, y)
         self.head.forward(MOVE_DISTANCE)
+
+    def increase_speed(self):
+        if len(self.segments) == 7:
+            self.speed -= 0.05
+        if len(self.segments) == 15:
+            self.speed -= 0.03
+        if len(self.segments) == 20:
+            self.speed -= 0.03
 
     def up(self):
         if self.head.heading() != DOWN:
