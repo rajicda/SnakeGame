@@ -41,6 +41,7 @@ class Snake:
     def reset(self):
         for segment in self.segments:
             segment.goto(1000, 1000)
+        self.speed = 0.15
         self.segments.clear()
         self.create_snake()
         self.head = self.segments[0]
@@ -52,6 +53,8 @@ class Snake:
             self.speed -= 0.03
         if len(self.segments) == 20:
             self.speed -= 0.03
+        if self.speed < 0.0001:
+            self.speed = 0.0001
 
     def up(self):
         if self.head.heading() != DOWN:
